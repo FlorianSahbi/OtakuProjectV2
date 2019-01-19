@@ -1,10 +1,12 @@
 header {
+  z-index: 100;
   width: auto;
-  height: 10%;
+  height: 10vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: #FFAFBE;
+  position: relative;
 }
 
 #login-buttons a, .accounts-dialog a {
@@ -60,7 +62,28 @@ header {
   border-radius: 0px 15px 15px 0;  
 }
 
-.addForm {
+.addForm{
+  z-index: -1;
+  background: #FFAFBE;
+  bottom: -10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  border-top: 1px beige solid;
+  transition: all 0.2s ease;
+}
+
+.hide {
+  bottom: 0;
+  opacity: 0;
+}
+
+form .addForm {
+  height: 100%;
+  width: 100%;
   border: grey solid 1px;
   border-radius: 5px;
   padding: 0.5em;

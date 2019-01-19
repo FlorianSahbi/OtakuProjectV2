@@ -6,15 +6,13 @@ import NendoroidCard from '../Components/NendoroidCardComponent';
 import './NendoroidListView.css';
 import AccountsUIWrapper from '../../AuthBundle/AccountsUIWrapper';
 
-
-
-
 class NendoroidList extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            filter: null
+            filter: null,
+            showAddForm: false
         }
     }
 
@@ -37,6 +35,15 @@ class NendoroidList extends Component {
         this.setState({ filter: ReactDOM.findDOMNode(this.refs.nameFilterInput).value.trim().toLowerCase() });
     }
 
+    showFixture() {
+        Meteor.call('nendoroids.populateDb');
+    }
+
+    showAddForm() {
+        this.setState({
+            showAddForm: !this.state.showAddForm
+        })
+    }
 
     renderNendoroids(filter) {
         if (filter === null || filter === "") {
@@ -53,27 +60,34 @@ class NendoroidList extends Component {
     }
 
     render() {
+        const taskClassName = !this.state.showAddForm ? 'addForm hide' : 'addForm';
         return (
             <div className="container">
                 <header>
                     <h1>Nendoroid List : {this.props.nendoroidsCpt}</h1>
                     <AccountsUIWrapper />
+                    <button onClick={this.showFixture.bind(this)}>FIXTURE</button>
                     <form onChange={this.filter.bind(this)} >
                         <input className="filterNendoroid" type="text" ref="nameFilterInput" placeholder="Filter by name" />
                     </form>
+                    <span className="addNendoroid" onClick={this.showAddForm.bind(this)}>➕</span>
 
-                    <form className="addForm" onSubmit={this.handleSubmit.bind(this)} >
-                        <input className="addInputName addInput" type="text" ref="nameInput" placeholder="Name" />
-                        <input className="addInputNumber addInput" type="number" ref="numberInput" placeholder="Number" />
-                        <input className="addInputSeries addInput" type="text" ref="seriesInput" placeholder="Series" />
-                        <input type="submit" />
-                    </form>
-                    <span className="addNendoroid">➕</span>
+                    <div className={taskClassName}>
+                        {this.props.loggedInUser && (
+                            <form onSubmit={this.handleSubmit.bind(this)} >
+                                <input className="addInputName addInput" type="text" ref="nameInput" placeholder="Name" />
+                                <input className="addInputNumber addInput" type="number" ref="numberInput" placeholder="Number" />
+                                <input className="addInputSeries addInput" type="text" ref="seriesInput" placeholder="Series" />
+                                <input type="submit" />
+                            </form>
+                        )}
+                    </div>
+
                 </header>
 
-                <ul className="nendoroidList">
+                <div className="nendoroidList">
                     {this.renderNendoroids(this.state.filter)}
-                </ul>
+                </div>
             </div>
         );
     }
