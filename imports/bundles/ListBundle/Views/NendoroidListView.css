@@ -1,0 +1,68 @@
+header {
+  width: auto;
+  height: 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #FFAFBE;
+}
+
+#login-buttons a, .accounts-dialog a {
+    cursor: pointer;
+    font-size: 2em;
+    text-decoration: none;
+    text-shadow: 0 0 1px black;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  /* border: 3px yellow solid; */
+  box-sizing: border-box;
+}
+
+.nendoroidList {
+  height: 90%;
+  background: black;
+  width: auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  overflow: auto;
+  overflow-x: hidden;
+}
+
+.addNendoroid {
+  cursor: pointer;
+}
+
+.filterNendoroid, .addInput {
+  height: 35px;
+  width: 150px;
+  padding: 0px 10px;
+  font-size: 1.1em;
+  border-radius: 15px 5px;
+  background-color: unset;
+  margin: 5px;
+}
+
+.addInputName {
+  border-radius: 15px 0 0 15px;
+}
+
+.addInputNumber {
+  border-radius: 0;
+  width: 3.2em;
+}
+
+.addInputSeries {
+  border-radius: 0px 15px 15px 0;  
+}
+
+.addForm {
+  border: grey solid 1px;
+  border-radius: 5px;
+  padding: 0.5em;
+  
+}

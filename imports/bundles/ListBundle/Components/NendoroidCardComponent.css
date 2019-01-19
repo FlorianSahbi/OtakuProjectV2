@@ -1,0 +1,142 @@
+.nendoroidCard {
+  background-image: url('http://floriansahbi.com/otakuProject/web/images/nendoroids/742.jpg');
+  width: 160px;
+  max-width: 250px;
+  height: 240px;
+  flex: auto;
+  margin: 10px;
+  border-radius: 10px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s ease;
+  background-position: center center;
+  flex-direction: column;
+  background-size: cover;
+}
+
+.nendoroidCardInnerBorder {
+  position: relative;
+    width: 90%;
+    height: 90%;
+    border: 5px double beige;
+    border-radius: inherit;
+    background-color: rgba(0,0,0,0);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
+
+.nendoroidCardInnerBorder:hover {
+  background-color: rgba(0,0,0,0.6);
+}
+
+.nendoroidCardName, .nendoroidCardNumber {
+  color: beige;
+  z-index: 1;
+  font-family: 'Orbitron';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 0;
+  opacity: 0;
+  transition: all 0.5s ease;
+  text-align: center;
+  font-size: 2em;
+}
+
+.nendoroidCardMoreInformations {
+  color: beige;
+  position: absolute;
+  z-index: 1;
+  font-family: 'Orbitron';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90px;
+  height: 0px;
+  border-radius: 10px 10px 0 0;
+  background: #2b1e20;
+  bottom: 0;
+  border-top: 5px double beige;
+  border-left: 5px double beige;
+  border-right: 5px double beige;
+  transition: all 0.5s ease;
+  cursor: pointer;
+  opacity: 0;
+}
+
+.nendoroidCardInnerBorder:hover > .nendoroidCardName {
+  margin: 0;
+  opacity: 1;
+}
+
+.nendoroidCardInnerBorder:hover > .nendoroidCardNumber {
+  margin: 0;
+  opacity: 1;
+}
+
+.nendoroidCardInnerBorder:hover > .nendoroidCardMoreInformations {
+  height: 30px;
+  opacity: 1;
+}
+
+.nendoroidFormUpdate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    bottom: -160px;
+    border-radius: 5px;
+    padding: 1em;
+    z-index: 1;
+    color: beige;
+    background: rgba(0,0,0,0.5);
+    opacity: 0;
+    transition: all 0.2s ease;
+    display: none;
+}
+
+.nendoroidFormUpdate input {
+  border-radius: 10px;
+  background: none;
+  border-bottom: 2px;
+  margin: 5px;
+  width: 100%;
+  color: beige;
+}
+
+.delete, .update {
+  color: beige;
+  position: absolute;
+  z-index: 99;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+  height: 25px;
+  top: 0;
+  font-size: 2em;
+  margin: 5px;
+  cursor: pointer;
+  font-size: 1.5em;
+}
+
+
+.delete {
+  left: 0;
+}
+
+.update {
+  right: 0;
+}
+
+.update:hover > .nendoroidFormUpdate {
+    opacity: 1;
+    bottom: 0;
+}
