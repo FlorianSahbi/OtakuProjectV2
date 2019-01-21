@@ -7,29 +7,32 @@ import { withTracker } from 'meteor/react-meteor-data';
 class NendoroidPage extends Component {
 
     constructor(props) {
-        super(props)
+        super(props);
     }
 
-    componentDidMount(){
-        console.log(this.props.match.params);
-        console.log(this.props.match.params);
-        console.log(this.props.match.params);
-        console.log(this.props.match.params);
+    componentDidMount() {
+    }
+
+    getNendo() {
+
     }
 
     render() {
         return (
-            <div>
-                <div className="">
-                    <span className="number">{console.log(this.props.nendoroid)}</span>
+            <section className="nendoroidPage">
+                <div className="nendoroidPageWrapper">
+                    <h1>{this.props.nendoroid.map(nendo => nendo.name)}</h1>
+                    <img className="nendoroidPageImg" src={this.props.nendoroid.map(nendo => nendo.image) + this.props.nendoroid.map(nendo => nendo.number) + ".jpg"}/>
+                    <p className="nendoroidPageNumber">{"#" + this.props.nendoroid.map(nendo => nendo.number)}</p>
                 </div>
-            </div>
+            </section>
         );
+
     }
 }
 
-export default withTracker((params) => {
+export default withTracker((router) => {
     return {
-        nendoroid: Nendoroids.find({ name: params.match.params.nendoroid }).fetch(),
+        nendoroid: Nendoroids.find({ name: router.match.params.nendoroid }).fetch(),
     };
 })(NendoroidPage);

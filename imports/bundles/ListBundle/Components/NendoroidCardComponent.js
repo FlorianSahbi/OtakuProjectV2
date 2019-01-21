@@ -52,7 +52,7 @@ export default class NendoroidCard extends Component {
             <div className="nendoroidCard" style={nendoImage}>
 
                 <div className="nendoroidCardInnerBorder">
-                    {this.props.currentUser && (
+                    {localStorage.getItem('currentUser') !== null && (
                         <div>
                             <button className="delete" onClick={this.removeNendoroid.bind(this)}>❌</button>
                             <button className="update" onClick={this.showEditForm.bind(this)}>✎</button>

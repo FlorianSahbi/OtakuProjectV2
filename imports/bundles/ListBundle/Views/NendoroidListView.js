@@ -4,7 +4,6 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { Nendoroids } from '../Model/Nendoroids';
 import NendoroidCard from '../Components/NendoroidCardComponent';
 import './NendoroidListView.css';
-import AccountsUIWrapper from '../../AuthBundle/AccountsUIWrapper';
 import { Otakus } from '../../AuthBundle/Model/Otakus';
 import { Link } from "react-router-dom";
 
@@ -32,6 +31,12 @@ class NendoroidList extends Component {
         ReactDOM.findDOMNode(this.refs.seriesInput).value = '';
     }
 
+    signout(e) {
+        e.preventDefault();
+        localStorage.removeItem("currentUser");
+        this.forceUpdate()
+    }
+
     filter(e) {
         event.preventDefault(e);
         this.setState({ filter: ReactDOM.findDOMNode(this.refs.nameFilterInput).value.trim().toLowerCase() });
@@ -45,20 +50,17 @@ class NendoroidList extends Component {
         this.setState({ showAddForm: !this.state.showAddForm })
     }
 
-    renderNendo() {
-        return this.props.nendo.map(nendoroid => console.log(nendoroid));
-    }
 
     renderNendoroids(filter) {
         if (filter === null || filter === "") {
             return this.props.nendoroids.map(nendoroid => (
-                <NendoroidCard key={nendoroid._id} nendoroid={nendoroid} currentUser={this.props.loggedInUser} />
+                <NendoroidCard key={nendoroid._id} nendoroid={nendoroid} currentUser={this.props.currentUser} />
             ));
         }
         else {
             let nendo = this.props.nendoroids.filter(nendoroid => nendoroid.name.toLowerCase().indexOf(filter) > -1);
             return nendo.map(nendoroid => (
-                <NendoroidCard key={nendoroid._id} nendoroid={nendoroid} currentUser={this.props.loggedInUser} />
+                <NendoroidCard key={nendoroid._id} nendoroid={nendoroid} currentUser={this.props.currentUser} />
             ));
         }
     }
@@ -70,18 +72,29 @@ class NendoroidList extends Component {
                 <header>
                     <h1>Nendoroid List : {this.props.nendoroidsCpt}</h1>
 
-                    <Link to="/signin">signin</Link>
-                    <span>or</span>
-                    <Link to="/signup">signup</Link>
+                    {console.log(localStorage.getItem('currentUser'))}
+
+                    {localStorage.getItem('currentUser') === null && (
+                        <div>
+                            <Link to="/signin">signin</Link>
+                            <span>or</span>
+                            <Link to="/signup">signup</Link>
+                        </div>
+                    )}
+                    {localStorage.getItem('currentUser') !== null  && (
+                        <button onClick={this.signout.bind(this)}>
+                            SignOut
+                        </button>
+                    )}
 
                     <button onClick={this.showFixture.bind(this)}>FIXTURE</button>
                     <form onChange={this.filter.bind(this)} >
                         <input className="filterNendoroid" type="text" ref="nameFilterInput" placeholder="Filter by name" />
                     </form>
-                    <span className="addNendoroid" onClick={this.showAddForm.bind(this)}>➕</span>
+                    <span className="addNendoroid" onClick={this.showAddForm.bind(this)}>Click here to add nendo ➕</span>
 
                     <div className={taskClassName}>
-                        {this.props.loggedInUser && (
+                        {this.props.currentUser && (
                             <form onSubmit={this.handleSubmit.bind(this)} >
                                 <input className="addInputName addInput" type="text" ref="nameInput" placeholder="Name" />
                                 <input className="addInputNumber addInput" type="number" ref="numberInput" placeholder="Number" />

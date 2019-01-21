@@ -39,12 +39,6 @@ export default class Signup extends Component {
                         <input className="signupInputPassword signupInput" type="password" ref="passwordInput" placeholder="Password" />
                         <input type="submit" />
                     </form>
-                    {this.state.isLoggedIn && (
-                        <div className="notif">LoggedIn</div>
-                    )}
-                    {!this.state.isLoggedIn && (
-                        <div className="notif">LoggedOut</div>
-                    )}
                 </div>
             </section>
         );
