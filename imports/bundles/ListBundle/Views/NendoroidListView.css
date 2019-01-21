@@ -1,17 +1,31 @@
 header {
+  z-index: 100;
   width: auto;
-  height: 10%;
+  height: 10vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: #FFAFBE;
+  position: relative;
 }
 
-#login-buttons a, .accounts-dialog a {
+.authButton, .fixtureButton {
     cursor: pointer;
     font-size: 2em;
     text-decoration: none;
     text-shadow: 0 0 1px black;
+    color: black;
+    margin: 0 0.5em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.authButton:hover {
+  font-size: 2.5em;
+}
+
+.fixtureButton:hover {
+  font-size: 1.5em;
 }
 
 .container {
@@ -35,6 +49,18 @@ header {
 
 .addNendoroid {
   cursor: pointer;
+  font-size: 2em;
+  border-radius: 50%;
+  border: double 3px black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease;
+  margin: 10px;
+}
+
+.addNendoroid:hover {
+  font-size: 2.5em;
 }
 
 .filterNendoroid, .addInput {
@@ -60,9 +86,29 @@ header {
   border-radius: 0px 15px 15px 0;  
 }
 
-.addForm {
+.addForm{
+  z-index: -1;
+  background: #FFAFBE;
+  bottom: -10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  border-top: 1px beige solid;
+  transition: all 0.2s ease;
+}
+
+.hide {
+  bottom: 0;
+  opacity: 0;
+}
+
+form .addForm {
+  height: 100%;
+  width: 100%;
   border: grey solid 1px;
   border-radius: 5px;
-  padding: 0.5em;
-  
+  padding: 0.5em; 
 }
