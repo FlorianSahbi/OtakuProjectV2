@@ -61,7 +61,7 @@ export default class NendoroidCard extends Component {
 
                     <span className="nendoroidCardNumber">{`#${this.props.nendoroid.number}`}</span>
                     <span className="nendoroidCardName">{this.props.nendoroid.name}</span>
-                    <Link className="nendoroidCardMoreInformations" to={`/information/${this.props.nendoroid._id}`}>Info</Link>
+                    <Link className="nendoroidCardMoreInformations" to={`/product/${this.props.nendoroid.name}`}>Info</Link>
                 </div>
 
                 <div className={nendoClassName}>

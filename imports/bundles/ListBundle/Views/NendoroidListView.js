@@ -5,6 +5,8 @@ import { Nendoroids } from '../Model/Nendoroids';
 import NendoroidCard from '../Components/NendoroidCardComponent';
 import './NendoroidListView.css';
 import AccountsUIWrapper from '../../AuthBundle/AccountsUIWrapper';
+import { Otakus } from '../../AuthBundle/Model/Otakus';
+import { Link } from "react-router-dom";
 
 class NendoroidList extends Component {
 
@@ -40,9 +42,11 @@ class NendoroidList extends Component {
     }
 
     showAddForm() {
-        this.setState({
-            showAddForm: !this.state.showAddForm
-        })
+        this.setState({ showAddForm: !this.state.showAddForm })
+    }
+
+    renderNendo() {
+        return this.props.nendo.map(nendoroid => console.log(nendoroid));
     }
 
     renderNendoroids(filter) {
@@ -65,7 +69,11 @@ class NendoroidList extends Component {
             <div className="container">
                 <header>
                     <h1>Nendoroid List : {this.props.nendoroidsCpt}</h1>
-                    <AccountsUIWrapper />
+
+                    <Link to="/signin">signin</Link>
+                    <span>or</span>
+                    <Link to="/signup">signup</Link>
+
                     <button onClick={this.showFixture.bind(this)}>FIXTURE</button>
                     <form onChange={this.filter.bind(this)} >
                         <input className="filterNendoroid" type="text" ref="nameFilterInput" placeholder="Filter by name" />
@@ -82,9 +90,7 @@ class NendoroidList extends Component {
                             </form>
                         )}
                     </div>
-
                 </header>
-
                 <div className="nendoroidList">
                     {this.renderNendoroids(this.state.filter)}
                 </div>
@@ -95,8 +101,9 @@ class NendoroidList extends Component {
 
 export default withTracker(() => {
     return {
-        nendoroids: Nendoroids.find({}).fetch(),
+        nendoroids: Nendoroids.find({ name: { $ne: "N/A" } }).fetch(),
+        nendo: Nendoroids.find({ $and: [{ name: { $ne: "N/A" } }, { number: { $gte: 0, $lte: 300 } }] }).fetch(),
         nendoroidsCpt: Nendoroids.find({}).count(),
-        loggedInUser: Meteor.user(),
+        currentUser: Otakus.find({ email: localStorage.getItem('currentUser') }).fetch(),
     };
 })(NendoroidList);

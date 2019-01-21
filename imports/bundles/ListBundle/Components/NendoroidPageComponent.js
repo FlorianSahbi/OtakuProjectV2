@@ -10,23 +10,26 @@ class NendoroidPage extends Component {
         super(props)
     }
 
+    componentDidMount(){
+        console.log(this.props.match.params);
+        console.log(this.props.match.params);
+        console.log(this.props.match.params);
+        console.log(this.props.match.params);
+    }
+
     render() {
-        if (this.props.nendoroid) {
-            return (
-                <div>
-                    <div className="nendoroidCardInnerBorder">
-                        <span className="number">{console.log(this.props.nendoroid[0].number)}</span>
-                        <span className="name">{console.log(this.props.nendoroid[0].name)}</span>
-                        <span className="series">{console.log(this.props.nendoroid[0].series)}</span>
-                    </div>
+        return (
+            <div>
+                <div className="">
+                    <span className="number">{console.log(this.props.nendoroid)}</span>
                 </div>
-            );
-        }
+            </div>
+        );
     }
 }
 
-export default withTracker(() => {
+export default withTracker((params) => {
     return {
-        nendoroid: Nendoroids.find({ name: "Leonardo" }).fetch(),
+        nendoroid: Nendoroids.find({ name: params.match.params.nendoroid }).fetch(),
     };
 })(NendoroidPage);
