@@ -2,7 +2,7 @@ import React from 'react';
 import { Router, Route, Switch } from 'react-router';
 import createBrowserHistory from 'history/createBrowserHistory';
 
-// route components
+// Components
 import NendoroidListView from './bundles/ListBundle/Views/NendoroidListView';
 import NendoroidPage from './bundles/ListBundle/Components/NendoroidPageComponent';
 import SignupView from './bundles/AuthBundle/Views/SignupView';

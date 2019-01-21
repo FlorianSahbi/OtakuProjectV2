@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import './NendoroidPageComponent.css';
 import { Nendoroids } from '../Model/Nendoroids';
 import { withTracker } from 'meteor/react-meteor-data';
-
+import './NendoroidPageComponent.css';
 
 class NendoroidPage extends Component {
 
@@ -10,19 +9,12 @@ class NendoroidPage extends Component {
         super(props);
     }
 
-    componentDidMount() {
-    }
-
-    getNendo() {
-
-    }
-
     render() {
         return (
             <section className="nendoroidPage">
                 <div className="nendoroidPageWrapper">
                     <h1>{this.props.nendoroid.map(nendo => nendo.name)}</h1>
-                    <img className="nendoroidPageImg" src={this.props.nendoroid.map(nendo => nendo.image) + this.props.nendoroid.map(nendo => nendo.number) + ".jpg"}/>
+                    <img className="nendoroidPageImg" src={`http://floriansahbi.com/otakuProject/web/images/nendoroids/${this.props.nendoroid.map(nendo => nendo.number)}.jpg`}/>
                     <p className="nendoroidPageNumber">{"#" + this.props.nendoroid.map(nendo => nendo.number)}</p>
                 </div>
             </section>

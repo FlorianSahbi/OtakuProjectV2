@@ -33,7 +33,7 @@ export default class Signup extends Component {
             <section className="signupPage">
                 <div className="signupWrapper">
                     <h1>Nendoroid</h1>
-                    <p>Start to share your favorite Nendoroids and your collection with your friends !</p>
+                    <p>Start to share your favorite Nendoroids and your collection with your friends by signin in !</p>
                     <form className="signupForm" onSubmit={this.handleSignin.bind(this)} >
                         <input className="signupInputEmail signupInput" type="email" ref="emailInput" placeholder="Email" />
                         <input className="signupInputPassword signupInput" type="password" ref="passwordInput" placeholder="Password" />

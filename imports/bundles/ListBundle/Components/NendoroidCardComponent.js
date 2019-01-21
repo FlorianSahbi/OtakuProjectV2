@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
-import { Nendoroids } from '../Model/Nendoroids';
 import { Link } from 'react-router-dom';
 import './NendoroidCardComponent.css';
 
@@ -30,10 +29,12 @@ export default class NendoroidCard extends Component {
     }
 
     removeNendoroid() {
+        // remove this nendo
         Meteor.call('nendoroids.remove', this.props.nendoroid._id);
     }
 
     moreInformation() {
+        // redirect to the product page using its id
         let nendoId = this.props.nendoroid._id.toString();
         console.log(`nendoId Value = ${nendoId}`);
         return <Redirect className="nendoroidCardMoreInformations" to={`/information/${this.props.nendoroid._id}`} />
@@ -47,11 +48,12 @@ export default class NendoroidCard extends Component {
 
     render() {
         const nendoClassName = !this.state.showEditForm ? 'nendoroidFormUpdate hide' : 'nendoroidFormUpdate';
-        const nendoImage = { backgroundImage: `url(${this.props.nendoroid.image}${this.props.nendoroid.number}.jpg)` };
+        const nendoImage = { backgroundImage: `url(http://floriansahbi.com/otakuProject/web/images/nendoroids/${this.props.nendoroid.number}.jpg)` };
         return (
             <div className="nendoroidCard" style={nendoImage}>
 
                 <div className="nendoroidCardInnerBorder">
+                    {/* if local storage not null then a user is conencted then he can access edit button */}
                     {localStorage.getItem('currentUser') !== null && (
                         <div>
                             <button className="delete" onClick={this.removeNendoroid.bind(this)}>❌</button>
